@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+import { obtenerDiferenciaYear } from "../helper";
 
 const Campo = styled.div`
   display: flex;
@@ -65,8 +66,6 @@ const Form = () => {
     setDatos({ ...datos, [e.target.name]: e.target.value });
   };
 
-  console.log(datos);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -77,10 +76,15 @@ const Form = () => {
     }
     setError(false);
 
+    //Una base de 2000 para calcular el precio
+    let resultado = 2000;
+
     //Obtener diferencia de años
-
+    const diferencia = obtenerDiferenciaYear(year);
+    console.log(diferencia);
     //Por cada año hay que restar 3%
-
+    resultado -= (diferencia * 3 * resultado) / 100;
+    console.log(resultado);
     //Americano 15%
     //Europeo 30%
     //Asiatico 5%
