@@ -41,12 +41,23 @@ const Boton = styled.button`
   }
 `;
 
+const Error = styled.div`
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
 const Form = () => {
   const [datos, setDatos] = useState({
     marca: "",
     year: "",
     plan: "",
   });
+
+  const [error, setError] = useState(false);
 
   const { marca, year, plan } = datos;
 
@@ -56,8 +67,33 @@ const Form = () => {
 
   console.log(datos);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //Validacion
+    if (marca.trim() === "" || year.trim() === "" || plan.trim() === "") {
+      setError(true);
+      return;
+    }
+    setError(false);
+
+    //Obtener diferencia de años
+
+    //Por cada año hay que restar 3%
+
+    //Americano 15%
+    //Europeo 30%
+    //Asiatico 5%
+
+    //Basico aumenta 20%
+    //Completo 50%
+
+    //Total
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
+      {error ? <Error>Todos los campos son obligatorios</Error> : null}
       <Campo>
         <Label>Marca</Label>
         <Select name="marca" value={marca} onChange={obtenerInformación}>
@@ -102,7 +138,7 @@ const Form = () => {
         />
         Completo
       </Campo>
-      <Boton type="button">Cotizar</Boton>
+      <Boton type="submit">Cotizar</Boton>
     </form>
   );
 };
