@@ -25,3 +25,9 @@ export function calculaMarca(marca) {
   }
   return incremento;
 }
+
+//Calcula el total dependiendo del plan de seguro que contratemos
+
+export function calculaPlan(plan) {
+  return plan === "basico" ? 1.2 : 1.5;
+}
