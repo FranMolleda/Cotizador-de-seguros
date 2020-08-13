@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import styled from "@emotion/styled";
 import Form from "./components/Form";
+import Resume from "./components/Resume";
 
 const Container = styled.div`
   max-width: 600px;
@@ -14,12 +15,24 @@ const FormContainer = styled.div`
 `;
 
 function App() {
+  const [resumen, setResumen] = useState({
+    cotizacion: 0,
+    datos: {
+      marca: "",
+      year: "",
+      plam: "",
+    },
+  });
+
+  const { datos } = resumen;
+
   return (
     <Container>
       <Header titulo="Cotizador de Seguros" />
 
       <FormContainer>
-        <Form />
+        <Form setResumen={setResumen} />
+        <Resume datos={datos} />
       </FormContainer>
     </Container>
   );

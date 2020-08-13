@@ -51,7 +51,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Form = () => {
+const Form = ({ setResumen }) => {
   const [datos, setDatos] = useState({
     marca: "",
     year: "",
@@ -81,7 +81,7 @@ const Form = () => {
 
     //Obtener diferencia de años
     const diferencia = obtenerDiferenciaYear(year);
-    console.log(diferencia);
+
     //Por cada año hay que restar 3%
     resultado -= (diferencia * 3 * resultado) / 100;
 
@@ -95,9 +95,12 @@ const Form = () => {
     const incrementoPlan = calculaPlan(plan);
 
     resultado = parseFloat(incrementoPlan * resultado).toFixed(2);
-    console.log(resultado);
 
     //Total
+    setResumen({
+      cotizacion: resultado,
+      datos,
+    });
   };
 
   return (
