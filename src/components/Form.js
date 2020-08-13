@@ -51,7 +51,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Form = ({ setResumen }) => {
+const Form = ({ setResumen, setCargando }) => {
   const [datos, setDatos] = useState({
     marca: "",
     year: "",
@@ -96,11 +96,16 @@ const Form = ({ setResumen }) => {
 
     resultado = parseFloat(incrementoPlan * resultado).toFixed(2);
 
-    //Total
-    setResumen({
-      cotizacion: resultado,
-      datos,
-    });
+    setCargando(true);
+
+    setTimeout(() => {
+      setCargando(false);
+      //Total
+      setResumen({
+        cotizacion: resultado,
+        datos,
+      });
+    }, 2000);
   };
 
   return (
