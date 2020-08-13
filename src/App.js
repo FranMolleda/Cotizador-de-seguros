@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import Form from "./components/Form";
 import Resume from "./components/Resume";
 import Result from "./components/Result";
+import Spinner from "./components/Spinner";
 
 const Container = styled.div`
   max-width: 600px;
@@ -25,6 +26,8 @@ function App() {
     },
   });
 
+  const [cargando, setCargando] = useState(false);
+
   const { datos, cotizacion } = resumen;
 
   return (
@@ -32,9 +35,10 @@ function App() {
       <Header titulo="Cotizador de Seguros" />
 
       <FormContainer>
-        <Form setResumen={setResumen} />
+        <Form setResumen={setResumen} setCargando={setCargando} />
+        {cargando ? <Spinner /> : null}
         <Resume datos={datos} />
-        <Result cotizacion={cotizacion} />
+        {!cargando ? <Result cotizacion={cotizacion} /> : null}
       </FormContainer>
     </Container>
   );
