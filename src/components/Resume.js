@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { primeraMayuscula } from "../helper";
+import PropTypes from "prop-types";
+
 const ContenedorResume = styled.div`
   padding: 1rem;
   text-align: center;
@@ -23,6 +25,10 @@ const Resume = ({ datos }) => {
       </ul>
     </ContenedorResume>
   );
+};
+
+Resume.propTypes = {
+  datos: PropTypes.object.isRequired,
 };
 
 export default Resume;
